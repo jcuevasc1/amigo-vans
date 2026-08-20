@@ -1,0 +1,19 @@
+# Credenciales / secretos — NUNCA subir esto
+hostinger.txt
+*.env
+.env
+*credentials*
+*password*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Futuro (cuando se agregue backend/build)
+node_modules/
+dist/
+build/

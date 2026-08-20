@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amigo Vans — Built Where You Live</title>
+<meta name="description" content="Custom mobile camper van conversions in Phoenix and Tucson, Arizona. No shop. No waiting list. Builds start at $72,000.">
+<style>
+  :root{
+    --cream:#F5EEDD;
+    --charcoal:#3B3B3B;
+    --black:#171717;
+    --sand:#A58F72;
+    --white:#fffdf7;
+    --copper:#B5651D;
+    --line:rgba(59,59,59,.16);
+    --max:1240px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--charcoal);
+    background:var(--cream);
+    line-height:1.45;
+  }
+  a{text-decoration:none;color:inherit}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  .container{width:min(var(--max), calc(100% - 48px));margin:auto}
+  .eyebrow{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-height:52px;padding:0 25px;border:1px solid transparent;
+    font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+    transition:.25s ease;cursor:pointer;
+  }
+  .btn-dark{background:var(--black);color:var(--white)}
+  .btn-dark:hover{background:var(--charcoal);transform:translateY(-2px)}
+  .btn-copper{background:var(--copper);color:#fff}
+  .btn-copper:hover{opacity:.9;transform:translateY(-2px)}
+  .btn-light{border-color:rgba(255,255,255,.5);color:white}
+  .btn-light:hover{background:white;color:var(--black)}
+  .btn-outline{border-color:var(--charcoal)}
+  .btn-outline:hover{background:var(--charcoal);color:var(--cream)}
+
+  /* NAV */
+  nav{
+    position:absolute;z-index:10;top:0;left:0;width:100%;
+    color:white;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.18);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+  .logo{font-size:25px;font-weight:900;letter-spacing:.04em}
+  .logo span{font-weight:400}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .nav-links a{opacity:.9}.nav-links a:hover{opacity:1}
+  .nav-cta{padding:12px 18px;border:1px solid rgba(255,255,255,.6)}
+
+  /* HERO */
+  .hero{
+    min-height:94vh;position:relative;display:flex;align-items:flex-end;
+    color:white;overflow:hidden;background:#252525;padding-bottom:110px;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background-image:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.18) 70%),url('fotosVans/preview.webp');
+    background-size:cover;background-position:center;
+  }
+  .hero-content{position:relative;z-index:2;padding:150px 0 20px;max-width:780px}
+  .hero h1{font-size:clamp(52px,8vw,108px);line-height:.9;margin:18px 0 22px;letter-spacing:-.055em}
+  .hero h1 em{font-style:normal;color:#e9dcc2}
+  .hero-copy{font-size:20px;max-width:650px;color:#f5f0e5;margin-bottom:16px}
+  .hero-price{font-size:15px;color:var(--sand);font-weight:700;max-width:600px;margin-bottom:30px}
+  .hero-price strong{color:#fff;font-size:19px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-bottom{
+    position:absolute;bottom:0;right:0;left:0;z-index:2;
+    border-top:1px solid rgba(255,255,255,.2);
+  }
+  .hero-bottom-inner{display:grid;grid-template-columns:repeat(3,1fr)}
+  .hero-stat{padding:20px 24px;border-right:1px solid rgba(255,255,255,.2)}
+  .hero-stat:last-child{border:0}
+  .hero-stat strong{display:block;font-size:18px}.hero-stat span{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.12em}
+
+  /* PULL QUOTE */
+  .pull-quote{background:var(--sand);color:var(--black);padding:46px 0}
+  .pull-quote blockquote{font-size:clamp(22px,3.2vw,34px);line-height:1.15;letter-spacing:-.02em;font-weight:800;max-width:900px;margin:0}
+  .pull-quote cite{display:block;margin-top:14px;font-style:normal;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+
+  /* INTRO */
+  .intro{padding:110px 0}
+  .intro-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:70px;align-items:start}
+  .intro h2{font-size:clamp(40px,5vw,72px);line-height:.95;letter-spacing:-.045em;margin:12px 0}
+  .intro p{font-size:21px;max-width:700px;margin:0 0 25px}
+  .big-number{font-size:13px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;border-top:1px solid var(--line);padding-top:18px}
+
+  /* BUILD OPTIONS */
+  .split{display:grid;grid-template-columns:1fr 1fr}
+  .split-card{min-height:620px;position:relative;overflow:hidden;color:white}
+  .split-card img{position:absolute;inset:0}
+  .split-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78),rgba(0,0,0,.05) 65%)}
+  .split-content{position:absolute;z-index:2;left:48px;right:48px;bottom:48px}
+  .split-content h3{font-size:clamp(35px,4vw,58px);line-height:.95;margin:10px 0 15px;letter-spacing:-.04em}
+  .split-content p{font-size:17px;max-width:500px;margin-bottom:24px}
+
+  /* PHOTO UPDATES */
+  .camera{background:var(--black);color:var(--cream);padding:105px 0}
+  .camera-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:center}
+  .camera-screen{
+    aspect-ratio:16/10;background:#242424;position:relative;overflow:hidden;
+    border:1px solid #444;
+  }
+  .camera-screen img{opacity:.85}
+  .live-badge{
+    position:absolute;top:18px;left:18px;background:var(--copper);color:#fff;
+    padding:9px 12px;font-size:10px;font-weight:800;letter-spacing:.12em;
+  }
+  .camera h2{font-size:clamp(42px,5vw,72px);line-height:.9;letter-spacing:-.05em;margin:12px 0 30px}
+  .proof{border-top:1px solid #555;padding:18px 0}.proof strong{display:block;font-size:18px}.proof span{color:#aaa;font-size:14px}
+
+  /* CAPABILITY */
+  .frank{position:relative;min-height:760px;color:white;display:flex;align-items:center;overflow:hidden}
+  .frank-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.18)),url('fotosVans/preview (2).webp');background-size:cover;background-position:center}
+  .frank-content{position:relative;z-index:2;max-width:760px;padding:100px 0}
+  .frank h2{font-size:clamp(50px,8vw,100px);line-height:.86;letter-spacing:-.055em;margin:15px 0 24px}
+  .specs{display:flex;flex-wrap:wrap;gap:9px;margin:30px 0}.specs span{border:1px solid rgba(255,255,255,.35);padding:9px 12px;font-size:10px;text-transform:uppercase;letter-spacing:.11em}
+
+  /* DISCREET */
+  .quiet{padding:115px 0}
+  .quiet-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .quiet-photo{height:620px}
+  .quiet h2{font-size:clamp(45px,6vw,78px);line-height:.9;letter-spacing:-.05em;margin:15px 0 24px}
+  .quiet p{font-size:19px;max-width:530px}
+
+  /* COMPONENTS */
+  .components{padding:100px 0;background:#e9dfcc}
+  .components-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+  .components h2{font-size:clamp(44px,6vw,76px);line-height:.9;letter-spacing:-.05em;margin:10px 0 0}
+  .brand-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .brand{min-height:210px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+  .brand-name{font-size:25px;font-weight:900;letter-spacing:.02em}.brand p{font-size:13px;margin:0;color:#5e594f}
+
+  /* CONFIGURATOR */
+  .configure{padding:115px 0}
+  .configure-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px}
+  .configure h2{font-size:clamp(45px,6vw,78px);line-height:.9;letter-spacing:-.05em;margin:12px 0 25px}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .option{border:1px solid var(--line);padding:22px;min-height:130px;background:rgba(255,255,255,.18)}
+  .option strong{display:block;font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+  .option span{font-size:13px;color:#6a6459}
+  .price-box{margin-top:25px;padding:24px;background:var(--charcoal);color:var(--cream);display:flex;justify-content:space-between;align-items:center}
+  .price-box span{font-size:10px;text-transform:uppercase;letter-spacing:.12em}.price-box strong{font-size:26px}
+
+  /* GALLERY */
+  .gallery{padding:0 24px 115px}
+  .gallery-head{display:flex;justify-content:space-between;align-items:end;margin:0 auto 30px;width:min(var(--max),100%)}
+  .gallery h2{font-size:clamp(44px,6vw,76px);line-height:.9;letter-spacing:-.05em;margin:10px 0}
+  .gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:300px 300px;gap:10px;max-width:1500px;margin:auto}
+  .gallery-item:first-child{grid-row:span 2}
+  .gallery-item{overflow:hidden}.gallery-item img{transition:.5s}.gallery-item:hover img{transform:scale(1.04)}
+  .gallery-note{max-width:var(--max);margin:16px auto 0;font-size:13px;font-style:italic;color:var(--sand)}
+
+  /* RESERVE */
+  .reserve{background:var(--black);color:var(--cream);padding:110px 0}
+  .reserve-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+  .reserve h2{font-size:clamp(52px,7vw,88px);line-height:.88;letter-spacing:-.06em;margin:12px 0 25px}
+  .reserve p{font-size:18px;color:#c8c1b2;max-width:550px}
+  form{display:grid;gap:12px}
+  input,select,textarea{width:100%;padding:16px 15px;background:#222;border:1px solid #4b4b4b;color:var(--cream);font:inherit}
+  textarea{min-height:110px;resize:vertical}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .form-note{font-size:11px;color:#8f8a7f}
+
+  footer{padding:35px 0;background:#111;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:.1em}
+  .footer-inner{display:flex;justify-content:space-between;gap:20px}
+
+  @media(max-width:850px){
+    .nav-links{display:none}.container{width:min(100% - 32px,var(--max))}
+    .hero{min-height:88vh}.hero-content{padding:130px 0 90px}
+    .hero-bottom-inner{grid-template-columns:1fr}.hero-stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.2)}
+    .intro-grid,.camera-grid,.quiet-grid,.configure-grid,.reserve-grid{grid-template-columns:1fr;gap:40px}
+    .split{grid-template-columns:1fr}.split-card{min-height:560px}
+    .brand-grid{grid-template-columns:1fr 1fr}.components-head{display:block}
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:250px 250px 250px}
+    .gallery-item:first-child{grid-row:span 2}
+  }
+  @media(max-width:560px){
+    .hero h1{font-size:58px}.hero-copy{font-size:17px}
+    .hero-actions .btn{width:100%}.split-content{left:25px;right:25px;bottom:30px}
+    .brand-grid,.options,.form-row{grid-template-columns:1fr}
+    .gallery{padding-left:12px;padding-right:12px}.gallery-grid{grid-template-columns:1fr;grid-template-rows:300px}
+    .gallery-item:first-child{grid-row:auto}
+    .gallery-item{height:300px}
+    .footer-inner{display:block}.footer-inner div+div{margin-top:12px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#">AMIGO <span>VANS</span></a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#capability">Off-Grid Ready</a>
+      <a href="#components">Components</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reserve" class="nav-cta">Reserve Build</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <div class="eyebrow">Custom Camper Van Conversions · Phoenix &amp; Tucson, Arizona</div>
+    <h1>NO SHOP.<br>NO RENT.<br><em>NO WAITING LIST.</em></h1>
+    <p class="hero-copy">We build your camper van where you live — your ranch, your warehouse, your garage, your acreage. No facility overhead, no queue.</p>
+    <p class="hero-price">Builds start at <strong>$72,000</strong> — conversion only, van not included. Comparable builds from facility-based shops start near $90,000 for the conversion alone. We don't carry a facility, and we don't charge you for one.</p>
+    <div class="hero-actions">
+      <a href="#reserve" class="btn btn-dark">Reserve Your Build</a>
+      <a href="#how" class="btn btn-light">See How It Works</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="container hero-bottom-inner">
+      <div class="hero-stat"><strong>~2 weeks</strong><span>Build starts after deposit</span></div>
+      <div class="hero-stat"><strong>Automatic</strong><span>Photo updates through the build</span></div>
+      <div class="hero-stat"><strong>$72,000</strong><span>Where builds start</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="pull-quote">
+  <div class="container">
+    <blockquote>"Our starting model has nothing but the same or better components than the current industry trophy winner. Simple as that."</blockquote>
+    <cite>— Amigo Vans, Founder</cite>
+  </div>
+</section>
+
+<section class="intro" id="how">
+  <div class="container intro-grid">
+    <div>
+      <div class="eyebrow">The Amigo Difference</div>
+      <h2>Why wait months for a shop queue?</h2>
+      <div class="big-number">Traditional shop model = overhead + bottleneck</div>
+    </div>
+    <div>
+      <p>Most van builders carry the cost of a permanent facility, rent, utilities, storage and a fixed production capacity. That cost becomes your wait.</p>
+      <p><strong>We built Amigo Vans differently.</strong> We don't have a shop — we arrive at your property with tools, components and crew, and build the van there.</p>
+      <p>Your money doesn't sit frozen for months. <strong>We start in about two weeks.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="split">
+  <article class="split-card">
+    <img src="fotosVans/preview (2).webp" alt="Amigo Vans 4x4 camper van conversion">
+    <div class="split-content">
+      <div class="eyebrow">How We Build · Phoenix / Tucson</div>
+      <h3>WE COME<br>TO YOU.</h3>
+      <p>Your ranch, your warehouse, your garage, your acreage. We bring the build to your property and get started about two weeks after your deposit.</p>
+      <a class="btn btn-light" href="#reserve">Start Your Build</a>
+    </div>
+  </article>
+  <article class="split-card">
+    <img src="fotosVans/preview (6).webp" alt="Steel fabrication and armor on an Amigo Vans build">
+    <div class="split-content">
+      <div class="eyebrow">Fabricated, Not Bought</div>
+      <h3>STEEL WE<br>MAKE OURSELVES.</h3>
+      <p>Flares, bumpers, racks, sliders — fabricated in-house, heavier gauge than most catalogue parts, and priced well under retail because we make it ourselves.</p>
+      <a class="btn btn-light" href="#components">See What We Use</a>
+    </div>
+  </article>
+</section>
+
+<section class="camera">
+  <div class="container camera-grid">
+    <div class="camera-screen">
+      <img src="fotosVans/preview (4).webp" alt="Amigo Vans interior build in progress">
+      <div class="live-badge">● AUTOMATIC UPDATES</div>
+    </div>
+    <div>
+      <div class="eyebrow">Built in the open</div>
+      <h2>WATCH YOUR VAN COME TOGETHER.</h2>
+      <div class="proof"><strong>PHOTO UPDATES, AUTOMATICALLY</strong><span>Through the entire build — not something you have to request.</span></div>
+      <div class="proof"><strong>NOBODY ELSE OFFERS THIS</strong><span>It's the one thing customers of other builders say they wish they'd had.</span></div>
+      <div class="proof"><strong>TWO-YEAR WARRANTY</strong><span>No mileage cap on workmanship — and warranty service is mobile too.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="frank" id="capability">
+  <div class="frank-bg"></div>
+  <div class="container frank-content">
+    <div class="eyebrow">Amigo Vans · One Build, No Second Product Line</div>
+    <h2>READY FOR<br>ANYWHERE.</h2>
+    <p style="font-size:20px;max-width:650px">The rugged, off-road capability isn't a separate model — it's a set of upgrades you choose on top of the same premium build everyone gets. Every van we make is capable of leaving the pavement.</p>
+    <div class="specs">
+      <span>Lithium Power</span><span>Full Solar</span><span>Van Compass Suspension</span><span>Steel Armor</span><span>Off-Grid Water</span><span>Starlink Ready</span><span>Drone Dock</span><span>Roof Deck</span>
+    </div>
+    <a href="#configure" class="btn btn-light">Explore The Options</a>
+  </div>
+</section>
+
+<section class="quiet">
+  <div class="container quiet-grid">
+    <div class="quiet-photo">
+      <img src="fotosVans/preview (1).webp" alt="Amigo Vans premium camper van interior">
+    </div>
+    <div>
+      <div class="eyebrow">The other side of Amigo</div>
+      <h2>SAME BUILD.<br>QUIET PRESENTATION.</h2>
+      <p>Not every trip needs to announce itself. The same premium spec can sit under a discreet, stock-looking exterior with an interior built around how you actually travel.</p>
+      <p><strong>Same components. Same attention. Different attitude.</strong></p>
+      <a href="#configure" class="btn btn-outline">Explore Your Build</a>
+    </div>
+  </div>
+</section>
+
+<section class="components" id="components">
+  <div class="container">
+    <div class="components-head">
+      <div>
+        <div class="eyebrow">Battle-tested components</div>
+        <h2>BUILD WITH<br>WHAT WE TRUST.</h2>
+      </div>
+      <p style="max-width:390px">Premium systems with manufacturer warranties that travel with the van — and that we administer for you.</p>
+    </div>
+    <div class="brand-grid">
+      <div class="brand"><div class="brand-name">BATTLE BORN</div><p>LiFePO4 battery systems built for serious off-grid use.</p></div>
+      <div class="brand"><div class="brand-name">VICTRON</div><p>Power management, inverters, chargers and monitoring.</p></div>
+      <div class="brand"><div class="brand-name">DOMETIC</div><p>Climate, refrigeration and comfort systems for the road.</p></div>
+      <div class="brand"><div class="brand-name">VAN COMPASS</div><p>Suspension and handling upgrades engineered for vans.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="configure" id="configure">
+  <div class="container configure-grid">
+    <div>
+      <div class="eyebrow">Your build. Your choices.</div>
+      <h2>CONFIGURE YOUR AMIGO.</h2>
+      <p style="font-size:18px;max-width:500px">Start simple or go completely off-grid. Choose the systems that make sense for how you travel.</p>
+      <a href="#reserve" class="btn btn-dark">Start a Build Conversation</a>
+    </div>
+    <div>
+      <div class="options">
+        <div class="option"><strong>Power</strong><span>Battery banks, inverter, shore power and monitoring.</span></div>
+        <div class="option"><strong>Solar</strong><span>Roof solar sized around your actual energy use.</span></div>
+        <div class="option"><strong>Climate</strong><span>Heating, ventilation and off-grid cooling.</span></div>
+        <div class="option"><strong>Water</strong><span>Fresh, grey, filtration and purification options.</span></div>
+        <div class="option"><strong>Interior</strong><span>Layouts, cabinetry, sleeping and living systems.</span></div>
+        <div class="option"><strong>Adventure</strong><span>Suspension, lighting, racks, decks and exterior gear.</span></div>
+      </div>
+      <div class="price-box"><span>Build pricing</span><strong>From $72,000</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="gallery-head">
+    <div><div class="eyebrow">Amigo builds</div><h2>GET INSPIRED.</h2></div>
+    <a href="#reserve" class="btn btn-outline">Plan Your Build</a>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="fotosVans/preview (8).webp" alt="Amigo Vans conversion"></div>
+    <div class="gallery-item"><img src="fotosVans/preview (7).webp" alt="Amigo Vans conversion"></div>
+    <div class="gallery-item"><img src="fotosVans/preview (5).webp" alt="Amigo Vans interior detail"></div>
+    <div class="gallery-item"><img src="fotosVans/preview (3).webp" alt="Amigo Vans conversion"></div>
+    <div class="gallery-item"><img src="fotosVans/preview.webp" alt="Amigo Vans conversion"></div>
+  </div>
+  <p class="gallery-note">* Reference photos while we add real shots from Amigo Vans jobsites.</p>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="container reserve-grid">
+    <div>
+      <div class="eyebrow">Ready when you are</div>
+      <h2>START IN<br>TWO WEEKS.</h2>
+      <p>Tell us what you're thinking. Pick a target start date and we'll get the conversation moving.</p>
+      <p><strong>No commitment required to start the conversation.</strong></p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('This form is a placeholder — we\'ll connect it (or switch it to WhatsApp) before launch.');">
+      <div class="form-row">
+        <input type="text" placeholder="First name" required>
+        <input type="text" placeholder="Last name" required>
+      </div>
+      <div class="form-row">
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Phone">
+      </div>
+      <select required>
+        <option value="">Where will we build?</option>
+        <option>Phoenix metro — my property</option>
+        <option>Tucson metro — my property</option>
+        <option>Not sure yet</option>
+      </select>
+      <div class="form-row">
+        <input type="date" required>
+        <select>
+          <option value="">Van status</option>
+          <option>I already have the van</option>
+          <option>I'm shopping for a van</option>
+          <option>I need help sourcing one</option>
+        </select>
+      </div>
+      <textarea placeholder="Tell us what you're imagining..."></textarea>
+      <button class="btn btn-light" type="submit">Request My Build Date</button>
+      <div class="form-note">Placeholder form — will be wired up (or switched to WhatsApp) before launch.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Amigo Vans</div>
+    <div>Phoenix &amp; Tucson, Arizona · Built for the road</div>
+  </div>
+</footer>
+
+</body>
+</html>
